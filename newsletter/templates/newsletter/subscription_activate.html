@@ -1,0 +1,51 @@
+{% extends "newsletter/common.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Newsletter" %} {{ newsletter.title }} {{ action }} {% trans "activate" %}{% endblock title %}
+
+{% block body %}
+<div class="navbar navbar-inverse" id="navbar-top">
+      <div class="navbar-inner">
+        <div class="container">
+         <span class="brand"> {% trans "Newsletter" %} - {{ newsletter.title }} - {{ action }} {% trans "activate" %}</span></a>         
+        </div>
+      </div>
+    </div>
+
+
+<form class="form-horizontal" enctype="multipart/form-data" method="post" action=".">
+            	<fieldset>  
+          <form class="form-horizontal"> 
+	{% csrf_token %} 
+        <fieldset>   
+          <div class="control-group">  
+            <label class="control-label" for="input01">Name</label>  
+            <div class="controls">  
+             {{ form.name_field }} 
+              <p class="help-block">Optional</p>  
+            </div>  
+          </div>  
+
+           <div class="control-group">  
+            <label class="control-label" for="input02">E-Mail</label>  
+            <div class="controls">  
+             {{ form.email_field }}
+            </div>  
+          </div> 
+
+	<div class="control-group">  
+            <label class="control-label" for="input03">Activation Code</label>  
+            <div class="controls">  
+             {{ form.user_activation_code }}
+            </div>  
+          </div> 
+
+      <div class="form-actions">  
+            <p><input id="id_submit" class="btn btn-primary" name="submit" value="{% trans "Activate" %}" type="submit" /></p>
+    </div>
+	</fieldset>
+        </form>
+
+
+{% endblock body %}

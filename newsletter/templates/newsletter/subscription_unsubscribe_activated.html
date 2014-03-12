@@ -1,0 +1,21 @@
+{% extends "newsletter/common.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Newsletter" %} {{ newsletter.title }} {{ action }} {% trans "activate" %}{% endblock title %}
+
+{% block body %}
+
+<div class="navbar navbar-inverse" id="navbar-top">
+      <div class="navbar-inner">
+        <div class="container">
+         <span class="brand"> {% trans "Newsletter" %} - {{ newsletter.title }} - {{ action }} {% trans "activate" %}</span></a>  
+		<ul class="nav pull-right">
+		<a href="../../" class="btn"> Back to {% trans "Newsletter" %} list </a>
+      	  </ul>          
+        </div>
+      </div>
+    </div>
+
+    <p>{% trans "You have successfully been unsubscribed." %}</p>
+{% endblock body %}

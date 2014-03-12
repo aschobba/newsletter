@@ -1,0 +1,37 @@
+{% extends "newsletter/common.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Newsletter archive" %}{% endblock title %}
+
+{% block body %}
+
+ <div class="navbar navbar-inverse" id="navbar-top">
+      <div class="navbar-inner">
+        <div class="container">
+         <span class="brand">{{ newsletter.title }} - {% trans "Newsletter archive" %}</span></a>  
+		<ul class="nav pull-right">
+		<a href="../" class="btn"> Back to {{ newsletter.title }}</a>
+      	  </ul>        
+        </div>
+      </div>
+    </div>
+
+
+<div class="container">
+      <div class="content">
+        <div class="frontpage-box">
+  <div class="inner">
+
+<ul class="nav nav-pills nav-stacked">
+	{% for submission in latest %}
+  <li><a href="{{ submission.get_absolute_url }}">{{ submission }}</a></li>
+	{% endfor %}
+</ul>
+      </div>
+      </div>
+    </div>
+ 
+</div>
+
+{% endblock body %}

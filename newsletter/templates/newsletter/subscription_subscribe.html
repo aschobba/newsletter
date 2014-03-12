@@ -1,0 +1,55 @@
+{% extends "newsletter/common.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Newsletter subscribe" %}{% endblock title %}
+
+{% block body %}
+
+ <div class="navbar navbar-inverse" id="navbar-top">
+      <div class="navbar-inner">
+        <div class="container">
+         <span class="brand">{{ newsletter.title }} - {% trans "Newsletter subscribe" %}</span></a>
+	   <ul class="nav pull-right">
+		<a href="../" class="btn"> Back to {{ newsletter.title }}</a>
+      	  </ul>              
+        </div>
+      </div>
+    </div>
+
+    {% if error %}
+        <p>{% trans "Due to a technical error we were not able to submit your confirmation email. This could be because your email address is invalid." %}</p>
+
+        {% comment %} Replace the the following dummy with a valid email address and remove this comment.
+
+        <p>{% trans "If the error persists, please don't hesitate to contact us at the following email address:" %} <a href="mailto:info@foobar.com">info@foobar.com</a></p>
+
+        {% endcomment %}
+    {% else %}
+        
+        <form class="form-horizontal" enctype="multipart/form-data" method="post" action=".">
+            	<fieldset>  
+          <form class="form-horizontal"> 
+	{% csrf_token %} 
+        <fieldset>   
+          <div class="control-group">  
+            <label class="control-label" for="input01">Name</label>  
+            <div class="controls">  
+             {{ form.name_field }} 
+              <p class="help-block">Optional</p>  
+            </div>  
+          </div>  
+
+           <div class="control-group">  
+            <label class="control-label" for="input02">E-Mail</label>  
+            <div class="controls">  
+             {{ form.email_field }}
+            </div>  
+          </div> 
+      <div class="form-actions">  
+            <p><input id="id_submit" class="btn btn-primary" name="submit" value="{% trans "Subscribe" %}" type="submit" /></p>
+    </div>
+		</fieldset>
+        </form>
+    {% endif %}
+{% endblock body %}

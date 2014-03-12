@@ -1,0 +1,77 @@
+{% extends "newsletter/common.html" %}
+
+{% load i18n %}
+{% load url from future %}
+
+{% block title %}{% trans "Newsletter list" %}{% endblock title %}
+
+{% block body %}
+{% if user.is_authenticated %}
+<form method="POST" action="">
+  {% csrf_token %}
+  {{ formset.management_form }}
+  <table>
+    <tr>
+        <th>{% trans "Newsletter" %}</th>
+        {% if user %}
+        <th>{% trans "Subscribe" %}</th>
+        {% endif %}
+    </tr>
+    {% for form in formset.forms %}
+      <tr>
+        <td>{{ form.id }}{{ form.newsletter }}
+<a href="{% url "newsletter_detail" form.instance.newsletter.slug %}">{{ form.instance.newsletter.title }}</a></td>
+        <td>{{ form.subscribed }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <p><input id="id_submit" name="submit" value="{% trans "Update subscriptions" %}" type="submit" /></p>
+</form>
+{% else %}
+
+<div class="navbar navbar-inverse" id="navbar-top">
+      <div class="navbar-inner">
+        <div class="container">
+         <span class="brand">{% trans "Newsletter list" %}</span></a>
+          <ul class="nav pull-right">
+      	  </ul>          
+        </div>
+      </div>
+    </div>
+
+
+<div class="container">
+      <div class="content">
+        <div class="frontpage-box">
+  <div class="inner">
+ 
+<div class="page-header">
+  <h1>Willkommen beim HHI Newsletter Service</h1>
+</div>
+
+
+ <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{% trans "Newsletter" %}</th>
+            <th>{% trans "description" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+		{% for newsletter in object_list %}
+    		<td><a class="btn " href="{% url "newsletter_detail" newsletter.slug %}">{{ newsletter.title }}</a></td>
+              <td>{{ newsletter.shortinfo }} </td>
+            {% endfor %}
+          </tr>
+        </tbody>
+      </table>
+
+      </div>
+      </div>
+    </div>
+ 
+</div>
+
+{% endif %}
+{% endblock body %}
