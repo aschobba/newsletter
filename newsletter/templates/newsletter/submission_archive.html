@@ -25,7 +25,7 @@
 
 <ul class="nav nav-pills nav-stacked">
 	{% for submission in latest %}
-  <li><a href="{{ submission.get_absolute_url }}">{{ submission }}</a></li>
+  <li><a href="{{ submission.get_absolute_url }}">{{ submission.message.title }} - {{ submission.publish_date }}</a></li>
 	{% endfor %}
 </ul>
       </div>

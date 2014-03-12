@@ -11,11 +11,23 @@
         <div class="container">
          <span class="brand"> {% trans "Newsletter" %} - {{ newsletter.title }} - {{ action }} {% trans "activate" %}</span></a> 
 		<ul class="nav pull-right">
-		<a href="../../" class="btn"> Back to {% trans "Newsletter" %} list </a>
+		<a href="../../../" class="btn"> Back to {% trans "Newsletter list" %} </a>
       	  </ul>        
         </div>
       </div>
     </div>
 
-    <p>{% trans "Your subscription has successfully been updated." %}</p>
+
+<div class="container">
+      <div class="content">
+        <div class="frontpage-box">
+  <div class="inner">
+    
+<h3>{% trans "Your subscription has successfully been updated." %}</h3>
+      </div>
+      </div>
+    </div>
+</div>
+
+    
 {% endblock body %}
